@@ -7,7 +7,6 @@ export const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('student');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -27,12 +26,8 @@ export const Register = () => {
     try {
       setError('');
       setLoading(true);
-      const res = await register(name, email, password, role);
-      if (res.user?.role === 'admin') {
-        navigate('/admin');
-      } else {
-        navigate('/profile'); // Guide new students to complete profile first!
-      }
+      await register(name, email, password);
+      navigate('/profile'); // Guide new students to complete profile first!
     } catch (err) {
       setError(err.message || 'Registration failed.');
     } finally {
@@ -141,46 +136,6 @@ export const Register = () => {
                 className="form-input"
                 style={{ paddingLeft: '2.4rem', height: '38px' }}
               />
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label className="form-label">Account Role</label>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-              <button
-                type="button"
-                onClick={() => setRole('student')}
-                style={{
-                  padding: '0.5rem',
-                  borderRadius: 'var(--radius-sm)',
-                  border: role === 'student' ? '2px solid var(--primary)' : '1px solid var(--border-subtle)',
-                  background: role === 'student' ? 'var(--primary-light)' : 'rgba(255,255,255,0.02)',
-                  color: role === 'student' ? '#ffffff' : 'var(--text-muted)',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  fontSize: '0.825rem',
-                  transition: 'var(--transition)'
-                }}
-              >
-                🎓 Student
-              </button>
-              <button
-                type="button"
-                onClick={() => setRole('admin')}
-                style={{
-                  padding: '0.5rem',
-                  borderRadius: 'var(--radius-sm)',
-                  border: role === 'admin' ? '2px solid var(--warning)' : '1px solid var(--border-subtle)',
-                  background: role === 'admin' ? 'var(--warning-light)' : 'rgba(255,255,255,0.02)',
-                  color: role === 'admin' ? '#ffffff' : 'var(--text-muted)',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  fontSize: '0.825rem',
-                  transition: 'var(--transition)'
-                }}
-              >
-                🛡️ Admin
-              </button>
             </div>
           </div>
 

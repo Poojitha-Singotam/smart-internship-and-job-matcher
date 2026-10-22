@@ -59,7 +59,7 @@ graph TD
 | **Frontend** | **React.js 19** (Vite) | Declarative component hierarchy with state hooks and context |
 | **Styling** | **Vanilla CSS** | Modern tokens, glassmorphism, responsive grid, dynamic badges |
 | **Backend** | **Python 3.13 / Flask** | Lightweight RESTful microframework with modular Blueprints |
-| **Security** | **PyJWT & Werkzeug** | SHA-256 password hashing and secure stateless JWT bearer tokens |
+| **Security** | **PyJWT & Werkzeug** | Werkzeug salted password hashing and secure stateless JWT bearer tokens |
 | **Database** | **MySQL 8.0** | Normalized schema with foreign keys, cascading deletes, and indexes |
 
 ---
@@ -208,7 +208,7 @@ MYSQL_PORT=3307
 MYSQL_USER=root
 MYSQL_PASSWORD=
 MYSQL_DB=smart_job_matcher
-JWT_SECRET=smart-matcher-jwt-secret-key-btech-2026
+JWT_SECRET=change-me
 FLASK_ENV=development
 PORT=5000
 ```

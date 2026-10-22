@@ -70,13 +70,10 @@ def register():
     name = (data.get('name') or '').strip()
     email = (data.get('email') or '').strip().lower()
     password = data.get('password') or ''
-    role = data.get('role', 'student').strip().lower()
+    role = 'student'   # admin accounts are created only by seed.py
 
     if not name or not email or not password:
         return jsonify({'success': False, 'message': 'Name, email, and password are required.'}), 400
-
-    if role not in ['student', 'admin']:
-        role = 'student'
 
     if len(password) < 6:
         return jsonify({'success': False, 'message': 'Password must be at least 6 characters long.'}), 400
